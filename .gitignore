@@ -1,0 +1,4 @@
+.env
+.DS_Store
+.dbeaver/credentials-config.json
+
