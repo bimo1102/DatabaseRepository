@@ -1,7 +1,68 @@
-version: '3.8'
-services:
-  sqlserver:
-    image: mcr.microsoft.com/mssql/server:2022-latest
-  postgres:
-    image: postgres:15-alpine
+#step1:
+#create volume
+#docker volume create sqlserver_shared_data
+#docker volume create postgres_shared_data
+#check: docker volume ls
 
+#step2:
+#cd docker-compose.yml
+#docker compose up -d      #create container
+#docker compose down       #delete container
+#docker compose down -v    #delete container and volume
+#docker compose down -a    #delete container and volume and network
+#docker ps
+
+version: "3.9"
+
+services:
+    # --- SQL SERVER ---
+    sqlserver:
+        image: mcr.microsoft.com/mssql/server:2022-latest
+        container_name: sqlserver
+        restart: always
+
+        environment:
+            ACCEPT_EULA: "Y"
+            MSSQL_SA_PASSWORD: ${SA_PASSWORD}
+            TZ: Asia/Ho_Chi_Minh
+
+        ports:
+            - "1433:1433"
+
+        volumes:
+            - sqlserver_shared_data:/var/opt/mssql
+
+        networks:
+            - app-network
+
+    # --- POSTGRESQL ---
+    postgres:
+        image: postgres:17
+        container_name: postgres
+        restart: always
+
+        environment:
+            POSTGRES_USER: ${POSTGRES_USER}
+            POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+            POSTGRES_DB: postgres
+            TZ: Asia/Ho_Chi_Minh
+
+        ports:
+            - "5432:5432"
+
+        volumes:
+            - postgres_shared_data:/var/lib/postgresql/data
+            - ./postgres/init:/docker-entrypoint-initdb.d
+
+        networks:
+            - app-network
+
+volumes:
+    sqlserver_shared_data:
+        external: true
+
+    postgres_shared_data:
+        external: true
+
+networks:
+    app-network:
