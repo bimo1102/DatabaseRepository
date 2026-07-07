@@ -1,0 +1,1 @@
+{"resources":{"databases/account/postgres/migrations/V001__Create_User_Table.sql":{"default-datasource":"postgres-jdbc-19f3ade1dc3-f23d78b0906535b","default-catalog":"postgres","default-schema":"public"}}}

@@ -23,3 +23,6 @@ BEGIN CATCH
 END CATCH
 -- Index for User email
 -- CREATE NONCLUSTERED INDEX IX_Users_Email ON dbo.Users(Email);
+
+-- Index Unique bắt buộc phải có để tầng ghi kiểm tra trùng lặp tài khoản khi đăng ký
+CREATE UNIQUE NONCLUSTERED INDEX [IX_Users_Write_UserName] ON [Users_Write] ([UserName] ASC);

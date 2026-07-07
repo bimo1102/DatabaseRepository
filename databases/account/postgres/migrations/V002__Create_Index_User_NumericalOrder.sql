@@ -1,0 +1,1 @@
+CREATE UNIQUE INDEX ix_users_numerical_order ON users (numerical_order ASC);

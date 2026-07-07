@@ -1,6 +1,24 @@
--- Read Model: Denormalized User Table
-CREATE TABLE public.users_read (
-  id UUID PRIMARY KEY,
-  username VARCHAR(256) NOT NULL,
-  email VARCHAR(256)
+CREATE TABLE users (
+    user_name VARCHAR(150) NOT NULL,
+    email_address VARCHAR(250) NULL,
+    password TEXT NULL,
+    phone_number VARCHAR(50) NULL,
+    password_salt TEXT NULL,
+    status INT NOT NULL,
+    full_name VARCHAR(250) NULL,
+    date_of_birth DATE NULL,
+    gender INT NULL,
+    identification_number VARCHAR(50) NULL,
+    company_name VARCHAR(250) NULL,
+    code VARCHAR(32) NOT NULL,
+    numerical_order BIGSERIAL NOT NULL,
+    created_date TIMESTAMP NOT NULL,
+    created_date_utc TIMESTAMP NOT NULL,
+    created_uid VARCHAR(250) NULL,
+    updated_date TIMESTAMP NOT NULL,
+    updated_date_utc TIMESTAMP NOT NULL,
+    updated_uid VARCHAR(250) NULL,
+    login_uid VARCHAR(250) NULL,
+    version INT NOT NULL,
+    CONSTRAINT pk_users PRIMARY KEY (code)
 );
