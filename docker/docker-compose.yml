@@ -1,16 +1,23 @@
 #step1:
+
 #create volume
 #docker volume create sqlserver_shared_data
 #docker volume create postgres_shared_data
 #check: docker volume ls
 
 #step2:
+
 #cd docker-compose.yml
 #docker compose up -d      #create container
 #docker compose down       #delete container
 #docker compose down -v    #delete container and volume
 #docker compose down -a    #delete container and volume and network
+
+#step3:
+
 #docker ps
+#docker logs sqlserver
+#docker logs postgres
 
 version: "3.9"
 
